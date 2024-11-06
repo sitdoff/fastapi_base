@@ -3,7 +3,7 @@ reportIncompatibleMethodOverride = false
 reportIncompatibleVariableOverride = false
 
 [tool.mypy]
-plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+plugins = []
 
 [tool.django-stubs]
 django_settings_module = "<project_name>.settings"
