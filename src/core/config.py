@@ -57,4 +57,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()  # pyright: ignore
-print(settings.db.echo)
