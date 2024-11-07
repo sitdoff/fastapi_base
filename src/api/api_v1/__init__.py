@@ -1,11 +1,13 @@
+# Здесь регистрируем роуты из файлов с функциями представлениями в единый роут версии api
+
 from fastapi import APIRouter
 
 from core.config import settings
 
-from .users import router as users_router
+from .example import router as example_router
 
 router = APIRouter(
     prefix=settings.api.v1.prefix,
 )
 
-router.include_router(users_router)
+router.include_router(example_router)

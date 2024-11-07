@@ -11,6 +11,10 @@ from core.config import settings
 
 
 class DatabaseHelper:
+    """
+    Класс для взаимодействия с базой данных.
+    """
+
     def __init__(
         self,
         url: str,
@@ -34,13 +38,21 @@ class DatabaseHelper:
         )
 
     async def dispose(self) -> None:
+        """
+        Отключает соединение с базой данных.
+        """
         await self.engine.dispose()
 
     async def session_getter(self) -> AsyncGenerator[AsyncSession, None]:
+        """
+        Метод-генератор возвращающий объект сессии.
+        """
         async with self.session_factory() as session:
             yield session
 
 
+# Объект помошника для взаимодействия с базой.
+# Его необходимо импортировать.
 db_helper = DatabaseHelper(
     url=str(settings.db.url),
     echo=settings.db.echo,

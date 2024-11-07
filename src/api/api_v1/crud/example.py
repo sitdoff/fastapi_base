@@ -1,3 +1,5 @@
+# Здесь объявляем функции для взаимодействия с базой
+
 from typing import Sequence
 
 from sqlalchemy import select

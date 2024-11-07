@@ -1,12 +1,13 @@
 services:
     db:
         image: postgres
+        container_name: postgres_db_example
         environment:
-            POSTGRES_DB: postgres
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: ${APP_CONFIG__DB__DATABASE}
+            POSTGRES_USER: ${APP_CONFIG__DB__USER}
+            POSTGRES_PASSWORD: ${APP_CONFIG__DB__PASSWORD}
         ports:
-            - 5432:5432
+            - ${APP_CONFIG__DB__PORT}:5432
 
     adminer:
         image: adminer

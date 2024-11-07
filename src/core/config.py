@@ -1,24 +1,42 @@
+# В этом файле создаются конфигурации для различных частей приложения.
+
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class RunConfig(BaseModel):
+    """
+    Настроки uvicorn при запуске.
+    """
+
     host: str = "0.0.0.0"
     port: int = 8000
     reload: bool = True
 
 
 class ApiV1Prefix(BaseModel):
+    """
+    Настройки для конкретной версии api.
+    """
+
     prefix: str = "/v1"
     users: str = "/users"
 
 
 class ApiPrefix(BaseModel):
+    """
+    Общие настройки api.
+    """
+
     prefix: str = "/api"
     v1: ApiV1Prefix = ApiV1Prefix()
 
 
 class DatabaseConfig(BaseSettings):
+    """
+    Настройки базы данных.
+    """
+
     database: str
     user: str
     password: str
@@ -31,10 +49,14 @@ class DatabaseConfig(BaseSettings):
 
     @property
     def url(self) -> PostgresDsn:
+        """
+        Свойство возвращает адрес для подключения к базе данных.
+        """
         return PostgresDsn(
             url=f"postgresql+asyncpg://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}"
         )
 
+    # Конвенция имён для миграций.
     naming_convention: dict[str, str] = {
         "ix": "ix_%(column_0_label)s",
         "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -45,6 +67,10 @@ class DatabaseConfig(BaseSettings):
 
 
 class Settings(BaseSettings):
+    """
+    Общий файл настроек.
+    """
+
     model_config = SettingsConfigDict(
         env_file=(".env", "src/.env"),
         case_sensitive=False,

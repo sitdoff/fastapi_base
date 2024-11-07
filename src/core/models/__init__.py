@@ -1,3 +1,5 @@
+# Здесь импортируем модели sqlalchemy. Это нужно, чтобы alembic мог находить их.
+
 __all__ = (
     "db_helper",
     "Base",
@@ -5,4 +7,4 @@ __all__ = (
 )
 from .base import Base
 from .db_helper import db_helper
-from .user import User
+from .example import User

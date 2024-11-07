@@ -1,3 +1,5 @@
+# Абстрактная базовая модель, от которой наследуются все остальные
+
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase, declared_attr
 

@@ -1,3 +1,5 @@
+# Здесь объявляем функции-пердставления
+
 from typing import Annotated
 
 from fastapi import APIRouter, Depends
@@ -7,8 +9,8 @@ from core.config import settings
 from core.models import db_helper
 from core.schemas.user import UserCreate, UserOut
 
-from .crud.users import create_user as create_user_crud
-from .crud.users import get_all_users
+from .crud.example import create_user as create_user_crud
+from .crud.example import get_all_users
 
 router = APIRouter(
     prefix=settings.api.v1.users,
